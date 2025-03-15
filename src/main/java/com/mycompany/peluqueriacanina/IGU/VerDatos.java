@@ -149,7 +149,7 @@ public class VerDatos extends javax.swing.JFrame {
         if(tablaMascotas.getRowCount() > 0){
             //Controlo que haya seleccionado al menos una mascota
             if(tablaMascotas.getSelectedRow() != -1) {
-                //Traigo el numero de id de la 1er columno (0)
+                //Traigo el numero de id de la 1er columna (0)
                 int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0))); 
                 //Llamo al metodo borrar
                 control.borrarMascota(num_cliente);
