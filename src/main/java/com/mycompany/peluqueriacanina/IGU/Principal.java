@@ -41,6 +41,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnVerDatos.setFont(new java.awt.Font("MS PGothic", 1, 18)); // NOI18N
         btnVerDatos.setText("Ver Datos");
+        btnVerDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerDatosActionPerformed(evt);
+            }
+        });
 
         btnSalir.setFont(new java.awt.Font("MS PGothic", 1, 18)); // NOI18N
         btnSalir.setText("Salir");
@@ -94,6 +99,12 @@ public class Principal extends javax.swing.JFrame {
         pantalla.setVisible(true); //Hace que sea visible
         pantalla.setLocationRelativeTo(null); //Para que la pantalla aparezca centrada
     }//GEN-LAST:event_btnCargarDatosActionPerformed
+
+    private void btnVerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDatosActionPerformed
+        VerDatos pantalla = new VerDatos();
+        pantalla.setVisible(true); //Hace que sea visible
+        pantalla.setLocationRelativeTo(null); //Para que la pantalla aparezca centrada
+    }//GEN-LAST:event_btnVerDatosActionPerformed
 
    
    
