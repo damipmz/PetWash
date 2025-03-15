@@ -1,14 +1,22 @@
 package com.mycompany.peluqueriacanina.logica;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class Duenio {
+@Entity
+public class Duenio implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String nombre;
     private String celDuenio;
 
     
-    //Constructores.
+    //Constructores
     public Duenio() {
     }
 
@@ -18,7 +26,7 @@ public class Duenio {
         this.celDuenio = celDuenio;
     }
 
-    //Getters y Setters.
+    //Getters y Setters
     public int getId() {
         return id;
     }

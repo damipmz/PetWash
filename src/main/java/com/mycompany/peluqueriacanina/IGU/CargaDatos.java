@@ -1,10 +1,17 @@
 package com.mycompany.peluqueriacanina.IGU;
 
+import com.mycompany.peluqueriacanina.logica.Controladora;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 
 public class CargaDatos extends javax.swing.JFrame {
+    
+    Controladora control = new Controladora(); 
 
     
     public CargaDatos() {
+        //control = new Controladora();
         initComponents();
     }
 
@@ -99,6 +106,7 @@ public class CargaDatos extends javax.swing.JFrame {
 
         cmbAtEsp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "SI", "NO" }));
 
+        jLabel11.setFont(new java.awt.Font("MS PGothic", 0, 12)); // NOI18N
         jLabel11.setText("N° Cliente");
 
         jLabel14.setText("Color");
@@ -252,6 +260,25 @@ public class CargaDatos extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
+        //Creo variables auxiliares
+        String nombreMasco = txtNombreMascota.getText();
+        String raza = txtRaza.getText();
+        String color = txtColor.getText();
+        String observaciones = txtObservaciones.getText();
+        String alergico = (String) cmbAlergico.getSelectedItem(); //Casteo del cmb
+        String atEspecial = (String) cmbAtEsp.getSelectedItem();
+        
+        String nombreDuenio = txtNombreDue.getText();
+        String celDuenio = txtCelular.getText();
+        
+        control.guardar(nombreMasco, raza, color, observaciones, alergico, atEspecial, nombreDuenio, celDuenio);
+        
+        //Ventana de guardado correcto
+        JOptionPane optionPane = new JOptionPane("Se guardo correctamente");
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Guardado exitoso");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -263,8 +290,7 @@ public class CargaDatos extends javax.swing.JFrame {
         txtCelular.setText("");
         
         cmbAlergico.setSelectedIndex(0);
-        cmbAtEsp.setSelectedIndex(0);
-        
+        cmbAtEsp.setSelectedIndex(0);      
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
    
