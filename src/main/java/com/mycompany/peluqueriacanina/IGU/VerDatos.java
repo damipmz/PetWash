@@ -155,7 +155,7 @@ public class VerDatos extends javax.swing.JFrame {
                 control.borrarMascota(num_cliente);
                 //Aviso al usuario 
                 mostrarMensaje("Mascota eliminada correctamente", "info", "Borrado de mascota");
-                cargarTabla(); //Vuelvo a cargar la tabla actualizada
+                cargarTabla(); //Vuelvo a cargar la tabla par que muestre los datos actualizados
                 
             } else {
                 mostrarMensaje("Se debe seleccionar mascota","error", "Error");
@@ -173,7 +173,7 @@ public class VerDatos extends javax.swing.JFrame {
             optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
         } 
         else if (tipo.equals("Error")){
-            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);   
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);   //Hay que poner el tipo de error, en este caso "_message"
         }
         JDialog dialog = optionPane.createDialog(titulo);
         dialog.setAlwaysOnTop(true);

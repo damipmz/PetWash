@@ -31,6 +31,7 @@ public class ControladoraPersistencia {
     public void borrarMascota(int num_cliente) {
         try {
             mascotaJpa.destroy(num_cliente);
+            duenioJpa.destroy(num_cliente);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
