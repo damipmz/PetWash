@@ -155,7 +155,7 @@ public class VerDatos extends javax.swing.JFrame {
                 control.borrarMascota(num_cliente);
                 //Aviso al usuario 
                 mostrarMensaje("Mascota eliminada correctamente", "info", "Borrado de mascota");
-                cargarTabla(); //Vuelvo a cargar la tabla par que muestre los datos actualizados
+                cargarTabla(); //Vuelvo a cargar la tabla par que 
                 
             } else {
                 mostrarMensaje("Se debe seleccionar mascota","error", "Error");
@@ -181,7 +181,19 @@ public class VerDatos extends javax.swing.JFrame {
     }
     
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        if(tablaMascotas.getRowCount() > 0){
+            if(tablaMascotas.getSelectedRow() != -1){
+                //Traigo el ID de la mascota a editar
+                int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0))); 
+                control.editarMascota(num_cliente);
+                
+            } else {
+                mostrarMensaje("Se debe seleccionar mascota","error", "Error");
+            }
+        
+        } else {
+            mostrarMensaje("No hay nada para editar en la tabla","Error","Error al editar");
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
