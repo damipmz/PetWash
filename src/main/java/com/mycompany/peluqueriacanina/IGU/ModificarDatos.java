@@ -1,6 +1,7 @@
 package com.mycompany.peluqueriacanina.IGU;
 
 import com.mycompany.peluqueriacanina.logica.Controladora;
+import com.mycompany.peluqueriacanina.logica.Mascota;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -8,13 +9,12 @@ import javax.swing.JOptionPane;
 public class ModificarDatos extends javax.swing.JFrame {
     
     Controladora control = null;
-    int num_cliente; //Variable global que recibe el valor
-
+    int num_cliente;
     
     public ModificarDatos(int num_cliente) {
         control = new Controladora();
-        this.num_cliente = num_cliente; //Obtengo el numero de cliente
         initComponents();
+        cargarDatos (num_cliente);
     }
 
    
@@ -55,7 +55,7 @@ public class ModificarDatos extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("MS PGothic", 0, 48)); // NOI18N
-        jLabel1.setText("Modificacion de Datos");
+        jLabel1.setText("Modifacion de Datos");
 
         jLabel4.setFont(new java.awt.Font("MS PGothic", 0, 12)); // NOI18N
         jLabel4.setText("Nombre");
@@ -88,7 +88,7 @@ public class ModificarDatos extends javax.swing.JFrame {
             }
         });
 
-        btnGuardar.setText("Guardar Cambos");
+        btnGuardar.setText("Gaurdar Cambios");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -144,7 +144,7 @@ public class ModificarDatos extends javax.swing.JFrame {
                                 .addGap(49, 49, 49)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(btnGuardar)
+                                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtNombreDue, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
@@ -248,7 +248,7 @@ public class ModificarDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-      /*  
+        
         //Creo variables auxiliares
         String nombreMasco = txtNombreMascota.getText();
         String raza = txtRaza.getText();
@@ -256,18 +256,18 @@ public class ModificarDatos extends javax.swing.JFrame {
         String observaciones = txtObservaciones.getText();
         String alergico = (String) cmbAlergico.getSelectedItem(); //Casteo del cmb
         String atEspecial = (String) cmbAtEsp.getSelectedItem();
-        
+        //Datos dueño
         String nombreDuenio = txtNombreDue.getText();
         String celDuenio = txtCelular.getText();
         
         control.guardar(nombreMasco, raza, color, observaciones, alergico, atEspecial, nombreDuenio, celDuenio);
         
         //Ventana de guardado correcto
-        JOptionPane optionPane = new JOptionPane("Se guardo correctamente");
+        JOptionPane optionPane = new JOptionPane("Se modifico correctamente");
         optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
         JDialog dialog = optionPane.createDialog("Guardado exitoso");
         dialog.setAlwaysOnTop(true);
-        dialog.setVisible(true);*/
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -312,4 +312,30 @@ public class ModificarDatos extends javax.swing.JFrame {
     private javax.swing.JTextArea txtObservaciones;
     private javax.swing.JTextField txtRaza;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDatos(int num_cliente) {
+        
+        Mascota masco = control.traerMascota(num_cliente);
+        
+        txtNombreMascota.setText(masco.getNombre());
+        txtRaza.setText(masco.getRaza());
+        txtColor.setText(masco.getColor());
+        txtObservaciones.setText(masco.getObservaciones());
+        txtNombreDue.setText(masco.getDuenio().getNombre());
+        txtCelular.setText(masco.getDuenio().getCelDuenio());
+        
+        if (masco.getAlergico().equals("SI")) {
+            cmbAlergico.setSelectedIndex(1);
+        } else if (masco.getAlergico().equals("NO")) {
+            cmbAlergico.setSelectedIndex(2);
+            }
+
+        if (masco.getAtencion_especial().equals("SI")) {
+            cmbAtEsp.setSelectedIndex(1);
+        } else if (masco.getAtencion_especial().equals("NO")) {
+            cmbAtEsp.setSelectedIndex(2);
+            }
+
+        
+    }
 }
