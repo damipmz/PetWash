@@ -8,13 +8,15 @@ import javax.swing.JOptionPane;
 
 public class ModificarDatos extends javax.swing.JFrame {
     
-    Controladora control = null;
-    int num_cliente;
-    
+   Controladora control; // No lo inicializamos aquí todavía
+   int num_cliente;
+   Mascota masco;
+ 
+
     public ModificarDatos(int num_cliente) {
         control = new Controladora();
         initComponents();
-        cargarDatos (num_cliente);
+        cargarDatos(num_cliente);
     }
 
    
@@ -88,7 +90,7 @@ public class ModificarDatos extends javax.swing.JFrame {
             }
         });
 
-        btnGuardar.setText("Gaurdar Cambios");
+        btnGuardar.setText("Guardar Cambios");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -261,13 +263,22 @@ public class ModificarDatos extends javax.swing.JFrame {
         String celDuenio = txtCelular.getText();
         
         control.guardar(nombreMasco, raza, color, observaciones, alergico, atEspecial, nombreDuenio, celDuenio);
+           
+        
+        control.modificarMascota(masco, nombreMasco, raza, color, observaciones, alergico, atEspecial, nombreDuenio, celDuenio);
         
         //Ventana de guardado correcto
-        JOptionPane optionPane = new JOptionPane("Se modifico correctamente");
-        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-        JDialog dialog = optionPane.createDialog("Guardado exitoso");
-        dialog.setAlwaysOnTop(true);
-        dialog.setVisible(true);
+        mostrarMensaje("Edicion realizada correctamente", "info","Edicion completa");
+        
+        VerDatos pantalla = new VerDatos();
+        pantalla.setVisible(true);
+        pantalla.setLocationRelativeTo(null);
+        
+        this.dispose();
+        
+        
+        
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -313,9 +324,11 @@ public class ModificarDatos extends javax.swing.JFrame {
     private javax.swing.JTextField txtRaza;
     // End of variables declaration//GEN-END:variables
 
+    
+    //Busco datos originales, sin modificar
     private void cargarDatos(int num_cliente) {
         
-        Mascota masco = control.traerMascota(num_cliente);
+        this.masco = control.traerMascota(num_cliente);
         
         txtNombreMascota.setText(masco.getNombre());
         txtRaza.setText(masco.getRaza());
@@ -337,5 +350,18 @@ public class ModificarDatos extends javax.swing.JFrame {
             }
 
         
+    }
+    
+     public void mostrarMensaje(String mensaje, String tipo, String titulo){
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if(tipo.equals("Informacion")){
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } 
+        else if (tipo.equals("Error")){
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);   //Hay que poner el tipo de error, en este caso "_message"
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);           
     }
 }

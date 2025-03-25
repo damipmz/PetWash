@@ -102,7 +102,8 @@ public class Mascota implements Serializable {
     public void setDuenio(Duenio duenio) {
         this.duenio = duenio;
     }
-    
+
+
     
     
 }

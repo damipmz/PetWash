@@ -191,6 +191,8 @@ public class VerDatos extends javax.swing.JFrame {
                 pantallaModif.setVisible(true);
                 pantallaModif.setLocationRelativeTo(null);
                 
+                this.dispose();
+                
             } else {
                 mostrarMensaje("Se debe seleccionar mascota","error", "Error");
             }
@@ -198,6 +200,8 @@ public class VerDatos extends javax.swing.JFrame {
         } else {
             mostrarMensaje("No hay nada para editar en la tabla","Error","Error al editar");
         }
+        
+        
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
