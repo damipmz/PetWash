@@ -41,10 +41,6 @@ public class Controladora {
     public void borrarMascota(int num_cliente) {
         controlPersis.borrarMascota(num_cliente);
     }
-
-    public void editarMascota(int num_cliente) {
-       
-    }
     
     
 }

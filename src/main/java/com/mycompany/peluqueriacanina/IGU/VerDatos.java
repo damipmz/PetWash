@@ -185,7 +185,11 @@ public class VerDatos extends javax.swing.JFrame {
             if(tablaMascotas.getSelectedRow() != -1){
                 //Traigo el ID de la mascota a editar
                 int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0))); 
-                control.editarMascota(num_cliente);
+                
+                //Abro pantalla ModificarDatos
+                ModificarDatos pantallaModif = new ModificarDatos();
+                pantallaModif.setVisible(true);
+                pantallaModif.setLocationRelativeTo(null);
                 
             } else {
                 mostrarMensaje("Se debe seleccionar mascota","error", "Error");
