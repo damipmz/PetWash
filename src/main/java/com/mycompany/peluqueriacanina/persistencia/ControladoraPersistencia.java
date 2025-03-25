@@ -26,7 +26,7 @@ public class ControladoraPersistencia {
 
     public List<Mascota> traerMascotas() {
         return mascotaJpa.findMascotaEntities(); //Busca los registros de la tabla mascota
-    };
+    }
 
     public void borrarMascota(int num_cliente) {
         try {
